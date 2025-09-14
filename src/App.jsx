@@ -1,31 +1,12 @@
-import { CreatePost } from './components/CreatePost'
-import { PostFilter } from './components/PostFilter'
-import { PostSorting } from './components/PostSorting'
-import { PostList } from './components/PostList'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Blog } from './Blog.jsx'
 
-const posts = [
-  {
-    title: 'Full-stack React Projects',
-    contents: "Let's become full-stack developers!",
-    author: 'Daniel Bugl',
-  },
-  {
-    title: 'Hello React!',
-  },
-]
+const queryClient = new QueryClient()
 
 export function App() {
   return (
-    <div style={{ padding: 8 }}>
-      <CreatePost />
-      <br />
-      <hr />
-      Filter by:
-      <PostFilter field='author' />
-      <br />
-      <PostSorting fields={['createdAt', 'updatedAt']} />
-      <hr />
-      <PostList posts={posts} />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Blog />
+    </QueryClientProvider>
   )
 }
