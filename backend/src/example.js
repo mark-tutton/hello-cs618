@@ -1,21 +1,19 @@
 import { initDatabase } from './db/init.js'
 
 import { Post } from './db/models/post.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 await initDatabase()
 
 const post = new Post({
-  title: 'Hello mongoose!',
-  author: 'Mark Tutton',
-  contents: 'This post is stored in a mongodb database using mongoose',
-  tags: ['mongoose', 'mongodb'],
+  title: 'Hello second post!',
+  author: 'John Doe',
+  contents: 'This post is a new post',
+  tags: ['frontend'],
 })
 
-const createdPost = await post.save()
-
-await Post.findByIdAndUpdate(createdPost._id, {
-  $set: { title: 'Hello again, Mongoose!' },
-})
+await post.save()
 
 const posts = await Post.find()
 
