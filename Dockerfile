@@ -14,17 +14,14 @@ COPY package-lock.json .
 # install deps
 RUN npm install
 
-# copya ll files
+# copy all files
 COPY . . 
 
 # run build
 RUN npm run build
 
-# nginx
-FROM nginx AS final
+# Expose port 3000
+EXPOSE 3000
 
-# nginx workdir
-WORKDIR /usr/share/nginx/html
-
-# copy built vite 
-COPY --from=build /build/dist . 
+# Start
+CMD ["npm", "start"]
