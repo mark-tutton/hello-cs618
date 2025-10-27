@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose'
-
 const eventsSchema = new Schema(
   {
     post: { type: Schema.Types.ObjectId, ref: 'post', required: true },
