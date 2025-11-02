@@ -1,0 +1,4 @@
+{
+  "schema": "https://musical-memory-gww76v77q2wq75-3001.app.github.dev/graphql",
+  "documents": "src/api/graphql/**/*.{js,jsx}"
+}
