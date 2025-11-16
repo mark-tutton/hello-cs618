@@ -6,7 +6,6 @@ import { Server } from 'socket.io'
 
 import { handleSocket } from './socket.js'
 
-import { postsRoutes } from './routes/posts.js'
 import { userRoutes } from './routes/users.js'
 
 // Setup
@@ -15,7 +14,6 @@ app.use(cors()) // TODO: add urls
 app.use(bodyParser.json())
 
 // Routes
-postsRoutes(app)
 userRoutes(app)
 
 // create socket server
