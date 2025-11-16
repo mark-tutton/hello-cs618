@@ -1,6 +1,11 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import { createServer } from 'node:http'
+import { Server } from 'socket.io'
+
+import { handleSocket } from './socket.js'
+
 import { postsRoutes } from './routes/posts.js'
 import { userRoutes } from './routes/users.js'
 
@@ -13,8 +18,18 @@ app.use(bodyParser.json())
 postsRoutes(app)
 userRoutes(app)
 
+// create socket server
+const server = createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  },
+})
+handleSocket(io)
+
 app.get('/', (req, res) => {
   res.send('Hello from Express!')
 })
 
-export { app }
+//export { app }
+export { server as app }
